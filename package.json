@@ -1,0 +1,24 @@
+{
+  "name": "recipe-tracker",
+  "version": "1.0.0",
+  "description": "API recipe tracking app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BradBones/recipe-tracker.git"
+  },
+  "author": "Bradley-Young",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BradBones/recipe-tracker/issues"
+  },
+  "homepage": "https://github.com/BradBones/recipe-tracker#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
