@@ -8,7 +8,8 @@ export const elements = {
     searchForm: document.querySelector('.search'),
     searchInput: document.querySelector('.search__field'),
     searchResults: document.querySelector('.results'),
-    searchResultsList: document.querySelector('.results__list')
+    searchResultsList: document.querySelector('.results__list'),
+    searchResultsPages: document.querySelector('.results__pages')
 };
 
 // Defining element strings within a function means that if the class names are changed in CSS, we can change them globally here without having find an chenge every isntance of them in the code.
