@@ -1,5 +1,6 @@
 // Importing axios for use instead of Fetch (npm axios module)
 import axios from 'axios';
+import { key } from '../config'; // If we had a cors proxy, it would be { key, proxy }
 
 
 export default class Search {
@@ -10,8 +11,6 @@ export default class Search {
 
     // calling the API with sn async function
     async getResults(query) {
-        // API key saved in a variable then parsed in as 'key' in the URL
-        const key = 'bd5d1bf55a2cb557db1b0f9083d6e05c';
         // Using the try / catch method to catch any errors
         try {
             // Awaiting the promise of the query to come back
