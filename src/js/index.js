@@ -28,13 +28,18 @@ const controlSearch = async () => {
         searchView.clearResults();
         renderLoader(elements.searchResults);
 
+        try {
+            // 4) Search for recipes
+            await state.search.getResults();
 
-        // 4) Search for recipes
-        await state.search.getResults();
-
-        // 5) render results on UI
-        clearLoader();
-        searchView.renderResults(state.search.result);
+            // 5) render results on UI
+            clearLoader();
+            searchView.renderResults(state.search.result);
+        } catch (err) {
+            console.log(err);
+            //alert('Something went wrong with the search...');
+            clearLoader();
+        }  
     }
 }
 
@@ -59,6 +64,39 @@ elements.searchResultsPages.addEventListener('click', e => {
 ///////////////////
 // RECIPE CONTROLER
 ///////////////////
-const r = new Recipe(35478);
-r.getRecipe();
-console.log(r);
+const controlRecipe = async () => {
+    // Get ID frim URL
+    const id = window.location.hash.replace('#', '');
+    //console.log(id);
+
+    if (id) {
+        // Prepare UI for changes
+
+        // Create new recipe object
+        state.recipe = new Recipe(id);
+
+        try {
+            // Get recipe data
+            await state.recipe.getRecipe();
+
+            // Calculate servings and time
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+
+            // Render recipe
+            console.log(state.recipe);
+        } catch (err) {
+            console.log(err);
+            //alert('Error processing recipe!');
+        }
+        
+    }
+};
+
+
+// Event listener on the window object to listen for url hash changes - In this case recipe IDs '#38393' returned by the api call.
+
+// Let's turn this repetition into one line using .forEach
+// window.addEventListener('hashchange', controlRecipe);
+// window.addEventListener('load', controlRecipe);
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
